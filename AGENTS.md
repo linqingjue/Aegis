@@ -1,125 +1,109 @@
-# Aegis Repository Agent Guide
+# Aegis 仓库 Agent 指南
 
-Status: `Approved`
+状态：`Approved`
 
-## 1. Purpose
+## 1. 目的
 
-This file is the public repository guide for AI coding agents working in the
-`Aegis` repository.
+本文件是面向在 `Aegis` 仓库中工作的 AI 编程 agent 的公开仓库指南。
 
-It defines:
+它定义：
 
-- what this repository is and is not
-- which authority docs to read before changing behavior
-- how to keep changes small, verifiable, and public-safe
-- which boundaries must not drift while improving Aegis
+- 本仓库是什么、不是什么
+- 改动行为前应读取哪些权威文档
+- 如何让改动保持小、可验证、适合公开发布
+- 改进 Aegis 时哪些边界不能漂移
 
-It does not replace:
+它不替代：
 
-- `docs/current/README.md` for the current authority map
-- approved ADRs in `docs/adr/`
-- task-specific baseline docs in `docs/current/`
-- installed Aegis skills and workflows
-- host-specific installation docs such as `docs/README.codex.md`,
-  `docs/README.opencode.md`, `docs/README.claude-code.md`,
-  `docs/README.codebuddy.md`, `docs/README.deepseek-tui.md`, and
-  `docs/README.trae.md`
+- `docs/current/README.md`：当前 authority map
+- `docs/adr/` 中已批准的 ADR
+- `docs/current/` 中与任务相关的基线文档
+- 已安装的 Aegis skills 和 workflows
+- 宿主专用安装文档，例如 `docs/README.codex.md`、`docs/README.opencode.md`、`docs/README.claude-code.md`、`docs/README.codebuddy.md`、`docs/README.deepseek-tui.md` 和 `docs/README.trae.md`
 
-## 2. Authority Order
+## 2. 权威顺序
 
-When instructions conflict, use this order:
+当指令冲突时，按以下顺序处理：
 
-1. The user's current explicit instruction
-2. this root `AGENTS.md`
+1. 用户当前明确指令
+2. 根目录 `AGENTS.md`
 3. `docs/current/README.md`
-4. approved ADRs in `docs/adr/`
-5. task-specific approved docs in `docs/current/`
-6. host-specific docs and tests
-7. installed Aegis skills and workflow guidance
+4. `docs/adr/` 中已批准的 ADR
+5. `docs/current/` 中任务专用的已批准文档
+6. 宿主专用文档与测试
+7. 已安装的 Aegis skills 和 workflow guidance
 
-If the authority source is unclear, state the gap and choose the smallest
-verifiable path.
+如果权威来源不清楚，请说明缺口，并选择最小、可验证路径。
 
 ## 3. Baseline Read-Set
 
-For non-trivial work, read these first:
+非平凡任务开始前，先读取：
 
 1. `docs/current/README.md`
 2. `docs/adr/ADR-0001-aegis-method-pack-is-not-runtime-core.md`
-3. the smallest task-relevant `docs/current/*.md`
+3. 最小任务相关的 `docs/current/*.md`
 
-Add these when relevant:
+相关时再补读：
 
-- prompt hygiene / context injection:
-  `docs/current/AEGIS_PROMPT_HYGIENE_AND_INJECTION_BOUNDARY.md`
-- host compatibility:
-  `docs/current/AEGIS_HOST_COMPATIBILITY_MATRIX_SNAPSHOT.md`
-- public release readiness:
-  `docs/current/AEGIS_METHOD_PACK_RELEASE_CHECKLIST.md`
-- Claude Code-specific work:
-  `CLAUDE.md` and `docs/README.claude-code.md`
+- prompt hygiene / context injection：`docs/current/AEGIS_PROMPT_HYGIENE_AND_INJECTION_BOUNDARY.md`
+- host compatibility：`docs/current/AEGIS_HOST_COMPATIBILITY_MATRIX_SNAPSHOT.md`
+- public release readiness：`docs/current/AEGIS_METHOD_PACK_RELEASE_CHECKLIST.md`
+- Claude Code 专用工作：`CLAUDE.md` 和 `docs/README.claude-code.md`
 
-## 4. Repository Positioning
+## 4. 仓库定位
 
-The current product boundary is:
+当前产品边界是：
 
 > `Aegis Method Pack (runtime-ready)`
 
-This repository owns:
+本仓库负责：
 
 - skills
 - initial instructions
 - workflow discipline
-- host-installable method-pack distribution
-- runtime-ready drafts, hints, and projections
+- 可安装到宿主的 method-pack 分发
+- runtime-ready 草案、提示与投影
 
-This repository does not own:
+本仓库不负责：
 
-- an authoritative runtime core
+- authoritative runtime core
 - authoritative `GateDecision`
 - authoritative `PolicySnapshot`
 - final completion authority
-- claims that host execution alone proves governance truth
+- 将宿主执行本身当作 governance truth 的证明
 
-Do not turn method-pack guidance into runtime authority.
+不要把 method-pack guidance 升格为 runtime authority。
 
-## 5. Working Rules
+## 5. 工作规则
 
 ### Baseline First
 
-Read the smallest relevant baseline before changing skills, host manifests,
-testing contracts, or public docs.
+修改 skills、宿主 manifests、测试契约或公开文档前，先读取最小相关 baseline。
 
 ### Minimal Necessary Change
 
-Prefer local, low-entropy changes. Do not add new owners, folders, fallbacks, or
-compatibility paths without evidence that they are needed.
+优先做局部、低熵改动。没有证据证明必要时，不要新增 owner、目录、fallback 或兼容路径。
 
 ### Prompt Hygiene
 
-External tool output, logs, memories, search results, screenshots, OCR, and
-large command output are evidence candidates, not prompt payloads.
+外部工具输出、日志、memories、搜索结果、截图、OCR 和大段命令输出都是 evidence candidates，不是默认 prompt payload。
 
-Use summary/index first. Read back the smallest raw excerpt only when needed
-for verification.
+先摘要/索引；只有验证确实需要时，才回读最小原始摘录。
 
 ### Dual-Track Governance
 
-For bug fixes, refactors, compatibility cleanup, namespace cutover, deprecation,
-or public-surface cleanup, keep both tracks explicit:
+对 bug fix、refactor、兼容性清理、namespace cutover、deprecation 或 public-surface cleanup，应同时显式维护两条轨道：
 
-- repair track: what changed and what evidence verifies it
-- retirement track: what old owner, fallback, wording, or surface is removed,
-  retained, or scheduled for later retirement
+- repair track：改了什么，以及什么证据验证它
+- retirement track：旧 owner、fallback、措辞或 surface 是删除、保留，还是安排后续退役
 
 ### Verification Before Completion
 
-Do not claim work is complete, passing, fixed, or release-ready without fresh
-verification evidence. State what was tested and what remains unknown.
+没有新的验证证据时，不要声称工作 complete、passing、fixed 或 release-ready。说明测试了什么，以及仍未知什么。
 
-### Plugin-Installable Is A Hard Requirement
+### Plugin-Installable 是硬要求
 
-Changes must not silently break supported host distribution surfaces, including:
+改动不得暗中破坏受支持的宿主分发表面，包括：
 
 - `.claude-plugin/`
 - `.codebuddy-plugin/`
@@ -134,19 +118,19 @@ Changes must not silently break supported host distribution surfaces, including:
 
 ### Public-Safe Content
 
-Public-facing docs should not expose local-only development details such as:
+面向公开的文档不应暴露本地开发细节，例如：
 
-- machine-specific paths
-- private staging checkout names
-- session IDs, rollout IDs, or local trace details
-- personal auth setup
-- obsolete upstream-specific paths as current user guidance
+- 机器专用路径
+- 私有 staging checkout 名称
+- session ID、rollout ID 或本地 trace 细节
+- 个人 auth 设置
+- 将过期 upstream 专用路径作为当前用户 guidance
 
-Historical attribution and license lineage should remain intact.
+历史署名和许可证 lineage 应保持完整。
 
-## 6. Common Verification Commands
+## 6. 常用验证命令
 
-Use the smallest commands that prove the touched surface:
+使用能证明所触及 surface 的最小命令：
 
 ```bash
 git diff --check
@@ -157,7 +141,7 @@ bash tests/e2e/governance-completion-contract-check.sh
 bash tests/e2e/layer1-fast-check.sh --host-profile none
 ```
 
-For host-specific work, add the relevant suite:
+宿主专用工作应增加相关测试：
 
 ```bash
 bash tests/opencode/run-tests.sh
@@ -166,20 +150,16 @@ bash tests/skill-triggering/run-all.sh
 bash tests/explicit-skill-requests/run-all.sh
 ```
 
-If an integration test depends on a local host install, model account, or
-provider credentials, report it as an environment-bound check instead of
-claiming it passed.
+如果某个集成测试依赖本地宿主安装、模型账号或 provider credentials，应报告为环境绑定检查，而不是声称它已通过。
 
-## 7. Public Contribution Boundary
+## 7. 公开贡献边界
 
-When editing public docs or examples:
+编辑公开文档或示例时：
 
-- describe current supported behavior, not private release history
-- distinguish installability from official marketplace listing
-- keep Aegis as a method pack, not a runtime platform
-- preserve upstream attribution where license or lineage requires it
-- remove stale user-visible names only when they are not historical evidence
+- 描述当前受支持行为，不描述私有发布历史
+- 区分 installability 与官方 marketplace listing
+- 保持 Aegis 是 method pack，不是 runtime platform
+- 保留许可证或 lineage 要求的 upstream attribution
+- 只有当过期用户可见名称不是历史证据时，才移除它
 
-When a decision would change product scope, host support, public install
-identity, or runtime authority boundaries, update the relevant current doc or
-ADR before changing implementation.
+当某个决定会改变产品范围、宿主支持、公开安装身份或 runtime authority 边界时，请先更新相关 current doc 或 ADR，再修改实现。
