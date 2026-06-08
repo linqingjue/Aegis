@@ -1,55 +1,47 @@
-# Aegis Current Docs
+# Aegis 当前文档
 
-Status: `Approved`
+状态：`Approved`
 
-## 1. Purpose
+## 1. 目的
 
-This directory contains the public current baseline for `Aegis Method Pack`.
+本目录保存 `Aegis Method Pack` 当前公开基线。
 
-It is intentionally small. Internal implementation records, migration plans,
-private smoke notes, cutover checklists, and local-only audit trails do not
-belong in this public current surface.
+它刻意保持较小范围。内部实现记录、迁移计划、私有 smoke 记录、cutover 清单和仅本地使用的审计轨迹，不应进入这个公开 current surface。
 
-## 2. Repository Boundary
+## 2. 仓库边界
 
-The current repository is:
+当前仓库是：
 
 > `Aegis Method Pack (runtime-ready)`
 
-This repository owns:
+本仓库负责：
 
-- skills and workflow discipline
-- host-installable method-pack distribution
-- runtime-ready drafts, hints, and projections
-- public docs needed by users and contributors
+- skills 与工作流纪律
+- 可安装到宿主的 method-pack 分发
+- runtime-ready 草案、提示与投影
+- 用户和贡献者需要的公开文档
 
-This repository does not own:
+本仓库不负责：
 
 - authoritative runtime core
 - authoritative `GateDecision`
 - authoritative `PolicySnapshot`
 - final `completion authority`
 
-## 3. Authority Order
+## 3. 权威顺序
 
-When public docs conflict, use this order:
+当公开文档发生冲突时，按以下顺序处理：
 
 1. `AGENTS.md`
 2. `docs/current/README.md`
-3. approved ADRs in `docs/adr/`
-4. task-relevant docs in `docs/current/`
-5. host-specific docs such as `docs/README.codex.md`,
-   `docs/README.opencode.md`, `docs/README.claude-code.md`,
-   `docs/README.cc-gui.md`, `docs/README.codebuddy.md`,
-   `docs/README.deepseek-tui.md`,
-   `docs/README.trae.md`, `docs/README.copilot.md`,
-   `docs/README.qoder.md`, `docs/README.pi.md`,
-   `docs/README.openclaw.md`, and `docs/README.hermes-agent.md`
-6. tests and fixtures
+3. `docs/adr/` 中已批准的 ADR
+4. `docs/current/` 中与任务相关的文档
+5. 宿主专用文档，例如 `docs/README.codex.md`、`docs/README.opencode.md`、`docs/README.claude-code.md`、`docs/README.cc-gui.md`、`docs/README.codebuddy.md`、`docs/README.deepseek-tui.md`、`docs/README.trae.md`、`docs/README.copilot.md`、`docs/README.qoder.md`、`docs/README.pi.md`、`docs/README.openclaw.md` 和 `docs/README.hermes-agent.md`
+6. tests 与 fixtures
 
-## 4. Public Current Baseline
+## 4. 公开 current 基线
 
-The public current set is:
+公开 current 文档集包括：
 
 - `docs/current/AEGIS_TARGET_STATE.md`
 - `docs/current/AEGIS_PRODUCT_BASELINE.md`
@@ -71,85 +63,72 @@ The public current set is:
 - `docs/current/AEGIS_KNOWN_LIMITATIONS.md`
 - `docs/adr/ADR-0001-aegis-method-pack-is-not-runtime-core.md`
 
-## 5. Document Roles
+## 5. 文档职责
 
 `AEGIS_TARGET_STATE.md`
-: One-page summary of what this repository is trying to become.
+: 用一页说明本仓库想成为的目标状态。
 
 `AEGIS_PRODUCT_BASELINE.md`
-: Product boundary, owned surfaces, and non-goals.
+: 产品边界、负责的 surface 和非目标。
 
 `AEGIS_PROCESS_BASELINE.md`
-: Method-layer workflow baseline, evidence discipline, and shared method
-  terminology such as `Design Defect` / `Implementation Drift`.
+: method 层工作流基线、证据纪律，以及 `Design Defect` / `Implementation Drift` 等共享术语。
 
 `AEGIS_WORKFLOW_GUIDE.md`
-: English workflow guide for users and contributors. It explains the current
-  Aegis workflow without adding runtime authority.
+: 工作流程说明的兼容文件名；项目默认中文化后，其内容应与中文说明保持一致或指向中文说明。
 
 `AEGIS_WORKFLOW_GUIDE_ZH.md`
-: Chinese workflow guide for users and contributors. It explains the current
-  Aegis workflow without adding runtime authority.
+: 面向用户和贡献者的中文工作流程说明，解释当前 Aegis workflow，但不添加 runtime authority。
 
 `AEGIS_ACTIVATION_MODE.md`
-: `auto` and `explicit` activation mode semantics.
+: `auto` 和 `explicit` activation mode 的语义。
 
 `AEGIS_TDD_MODE.md`
-: `auto` and `off` TDD mode semantics for automatic test-first routing.
+: 自动 test-first 路由中 `auto` 和 `off` TDD mode 的语义。
 
 `AEGIS_PROMPT_HYGIENE_AND_INJECTION_BOUNDARY.md`
-: Bounded context intake, evidence indexing, and log/output hygiene.
+: 有界上下文摄取、证据索引，以及日志/输出卫生。
 
 `AEGIS_RULE_LAYERING.md`
-: Method, host, and repo rule layering.
+: method、host 和 repo 规则分层。
 
 `AEGIS_TRIGGER_HEALTH_BASELINE.md`
-: Trigger-chain diagnosis for "installed but not reliably invoking the right
-skill", including install, discovery, activation, routing, execution-depth, and
-false-positive layers.
+: 针对“已安装但没有稳定触发正确 skill”的触发链路诊断，包括安装、发现、activation、路由、执行深度和 false-positive 层。
 
 `AEGIS_WORKFLOW_QUALITY_BASELINE.md`
-: Quality baseline for high-frequency workflows, compact output contracts,
-  representative samples, fast-path cheapness, evidence freshness, artifact
-  stability, workspace laziness, and authority boundary.
+: 高频 workflow 的质量基线，包括紧凑输出契约、代表性样本、fast-path cheapness、证据新鲜度、artifact 稳定性、workspace laziness 和 authority boundary。
 
 `AEGIS_DUAL_TRACK_GOVERNANCE.md`
-: Repair track plus retirement track governance.
+: repair track 加 retirement track 的治理规则。
 
 `AEGIS_ADR_AUTO_BACKFILL.md`
-: Completion-time ADR backfill from work, plan, spec, and verification
-  evidence, including ADR/baseline sync rules.
+: 从 work、plan、spec 和 verification evidence 中在完成时回填 ADR，并同步 ADR/baseline 规则。
 
 `AEGIS_ARTIFACT_SCHEMA_BASELINE.md`
-: Minimum runtime-ready artifact shapes.
+: 最小 runtime-ready artifact 形态。
 
 `AEGIS_RUNTIME_READY_BOUNDARY.md`
-: What the method pack may output, and what only a future runtime core may decide.
+: method pack 可以输出什么，以及只有未来 runtime core 才能决定什么。
 
 `AEGIS_METHOD_PACK_RELEASE_CHECKLIST.md`
-: Minimum release gate and verification readback.
+: 最小发布门禁和验证回读。
 
 `AEGIS_HOST_COMPATIBILITY_MATRIX_SNAPSHOT.md`
-: Current host compatibility snapshot and evidence boundary.
+: 当前宿主兼容性快照和证据边界。
 
 `AEGIS_KNOWN_LIMITATIONS.md`
-: Current limitations and retained compatibility boundaries.
+: 当前限制和保留的兼容性边界。
 
-## 6. Local Archive Rule
+## 6. 本地归档规则
 
-`docs/archive/` is local-only and ignored by git.
+`docs/archive/` 仅限本地使用，并被 git 忽略。
 
-Use it for implementation history, internal migration records, private staging
-notes, and old cutover material that should not ship as part of the public
-repository.
+它可用于实现历史、内部迁移记录、私有 staging notes，以及不应随公开仓库发布的旧 cutover material。
 
-Do not reference `docs/archive/` from public README files, host install docs, or
-release instructions.
+不要从公开 README、宿主安装文档或发布说明中引用 `docs/archive/`。
 
-## 7. Update Rule
+## 7. 更新规则
 
-When a change affects public behavior, host installation, release gates,
-runtime-ready artifacts, or the method-pack/runtime-core boundary, update the
-smallest relevant current doc before changing implementation.
+当改动影响公开行为、宿主安装、发布门禁、runtime-ready artifacts，或 method-pack/runtime-core 边界时，应先更新最小相关 current 文档，再修改实现。
 
-If a document is only useful as process evidence, keep it out of `docs/current`.
+如果某份文档只适合作为过程证据，请不要放入 `docs/current`。
