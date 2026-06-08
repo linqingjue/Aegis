@@ -1,6 +1,6 @@
 {
   "name": "aegis",
-  "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
+  "description": "面向 Claude Code 的核心 skills 库：TDD、调试、协作模式和经过验证的工作流",
   "version": "2.0.8",
   "author": {
     "name": "Aegis Maintainers"
